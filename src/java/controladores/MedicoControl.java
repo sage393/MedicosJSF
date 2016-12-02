@@ -5,6 +5,8 @@
  */
 package controladores;
 
+import entidades.Especialidad;
+import entidades.Establecimiento;
 import entidades.Medico;
 import java.io.Serializable;
 import java.util.List;
@@ -32,8 +34,18 @@ public class MedicoControl implements Serializable {
         return lstMedicos;
     }
     
+    public String nombreEspecialidad(Integer i) {
+        Especialidad especialidad = Especialidad.buscarNombrePorClave(i);
+        return especialidad.getNombre();
+    }
+    
+    public String nombreEstablecimiento(Integer i) {
+        Establecimiento establecimiento = Establecimiento.buscarPorClave(i);
+        return establecimiento.getNombre();
+    }
+    
     public void eliminarMedico(Medico x) {
-        Medico medico = new Medico(x.getId_Medico(), x.getEspecialidad(), x.getEstablecimiento(), x.getNombres(), x.getApellidos(), x.getJvp(), false);
+        Medico medico = new Medico(x.getId_Medico(), x.getId_Especialidad(), x.getId_Establecimiento(), x.getNombres(), x.getApellidos(), x.getJvp(), false);
         medico.modificar();
         listarMedicos();
     }
