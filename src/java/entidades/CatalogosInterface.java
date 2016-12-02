@@ -18,7 +18,5 @@ public interface CatalogosInterface<T> {
 
     public void modificar();
 
-    public T buscarPorClave(String clave);
-
     public void borrar();
 }
