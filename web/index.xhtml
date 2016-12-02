@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./plantillas/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        
+        <h:form>
+            <p:panel>
+                <f:facet name="header">
+                    <h2>Listado de medicos</h2>
+                </f:facet>
+                <p:dataTable id="tblMedico" var="medico" value="#{medicoControl.lstMedicos}">
+                    <p:column headerText="Código Médico">
+                        <h:outputText value="#{medico.id_Medico}" />
+                    </p:column>
+
+                    <p:column headerText="Nombres">
+                        <h:outputText value="#{medico.nombres}" />
+                    </p:column>
+
+                    <p:column headerText="Apellidos">
+                        <h:outputText value="#{medico.apellidos}" />
+                    </p:column>
+
+                    <p:column headerText="Especialidad">
+                        <h:outputText value="#{medico.especialidad.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="Establecimiento">
+                        <h:outputText value="#{medico.establecimiento.nombre}" />
+                    </p:column>
+
+                    <p:column headerText="JVP">
+                        <h:outputText value="#{medico.jvp}" />
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton value="Agregar" oncomplete="PF('wAgregar').show()"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton value="Modificar"/>
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton value="Eliminar" actionListener="#{medicoControl.eliminarMedico(medico)}"  update="tblMedico" />
+                    </p:column>
+
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+
+        <p:dialog widgetVar="wAgregar">
+            <h:form>
+                <p:panel header="Agregar nuevo medico">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel value="Nombres: " for="nombres"></h:outputLabel>
+                        <p:inputText id="nombres" value="" required="true"/>
+
+                        <h:outputLabel value="Apellidos" for="apellidos"></h:outputLabel>
+                        <p:inputText id="apellidos" value="" required="true"/>
+
+                        <h:outputLabel value="Especialidad: " for="especialidad"></h:outputLabel>
+                        <p:selectOneMenu id="especialidad" value="#{especialidadControl.lstEspecialidades}" >
+                            <f:selectItems value="#{especialidadControl.lstEspecialidades}" var="especialidad" itemValue="#{especialidad.id_Especialidad}" itemLabel="#{especialidad.nombre}" />
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="Establecimiento: " for="establecimineto"></h:outputLabel>
+                        <p:selectOneMenu id="establecimineto" value="#{establecimientoControl.lstEstablecimiento}" >
+                            <f:selectItems value="#{establecimientoControl.lstEstablecimiento}" var="establecimiento" itemValue="#{establecimiento.id_Establecimiento}" itemLabel="#{establecimiento.nombre}" />
+                        </p:selectOneMenu>
+
+                        <h:outputLabel value="JVP: " for="jvp"></h:outputLabel>
+                        <p:inputText id="jvp" value="" required="true"/>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+        </p:dialog>
+        
+    </ui:define>
+
+</ui:composition>
