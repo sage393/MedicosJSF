@@ -53,9 +53,8 @@ public class Especialidad implements CatalogosInterface<Especialidad> {
         DataBaseHelper.modificarRegistro(consultaSQL);
     }
 
-    @Override
-    public Especialidad buscarPorClave(String clave) {
-        String consultaSQL = "SELECT * FROM ESPECIALIDAD WHERE ID_ESPECIALIDAD = '" + Id_Especialidad + "'";
+    public static Especialidad buscarPorClave(Integer clave) {
+        String consultaSQL = "SELECT * FROM ESPECIALIDAD WHERE ID_ESPECIALIDAD = '" + clave + "'";
         DataBaseHelper db = new DataBaseHelper();
         Especialidad especialidad = (Especialidad) db.seleccionarRegistros(consultaSQL, Especialidad.class).get(0);
         return especialidad;
