@@ -52,14 +52,13 @@ public class Establecimiento implements CatalogosInterface<Establecimiento>{
         DataBaseHelper.modificarRegistro(consultaSQL);
     }
 
-    @Override
-    public Establecimiento buscarPorClave(String clave) {
-        String consultaSQL = "SELECT * FROM ESTABLECIMIENTO WHERE ID_ESTABLECIMIENTO = '" + Id_Establecimiento + "'";
+    public static Establecimiento buscarPorClave(Integer clave) {
+        String consultaSQL = "SELECT * FROM ESTABLECIMIENTO WHERE ID_ESTABLECIMIENTO = '" + clave + "'";
         DataBaseHelper db = new DataBaseHelper();
         Establecimiento establecimiento = (Establecimiento) db.seleccionarRegistros(consultaSQL, Establecimiento.class).get(0);
         return establecimiento;
     }
-
+    
     @Override
     public void borrar() {
         String sql = "DELETE FROM ESTABLECIMIENTO WHERE ID_ESTABLECIMIENTO = '" + Id_Establecimiento + "'";
