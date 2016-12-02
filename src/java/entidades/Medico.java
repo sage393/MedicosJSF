@@ -15,8 +15,8 @@ import modelos.DataBaseHelper;
 public class Medico implements CatalogosInterface<Medico> {
 
     private Integer Id_Medico;
-    private Especialidad especialidad;
-    private Establecimiento establecimiento;
+    private Integer Id_Especialidad;
+    private Integer Id_Establecimiento;
     private String nombres;
     private String apellidos;
     private String jvp;
@@ -25,32 +25,30 @@ public class Medico implements CatalogosInterface<Medico> {
     public Medico() {
     }
 
-    public Medico(Especialidad especialidad, Establecimiento establecimiento, String nombres, String apellidos, String jvp, boolean estado) {
-        this.especialidad = especialidad;
-        this.establecimiento = establecimiento;
+    public Medico(Integer Id_Especialidad, Integer Id_Establecimiento, String nombres, String apellidos, String jvp, boolean estado) {
+        this.Id_Especialidad = Id_Especialidad;
+        this.Id_Establecimiento = Id_Establecimiento;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.jvp = jvp;
         this.estado = estado;
     }
 
-    public Medico(Integer Id_Medico, Especialidad especialidad, Establecimiento establecimiento, String nombres, String apellidos, String jvp, boolean estado) {
+    public Medico(Integer Id_Medico, Integer Id_Especialidad, Integer Id_Establecimiento, String nombres, String apellidos, String jvp, boolean estado) {
         this.Id_Medico = Id_Medico;
-        this.especialidad = especialidad;
-        this.establecimiento = establecimiento;
+        this.Id_Especialidad = Id_Especialidad;
+        this.Id_Establecimiento = Id_Establecimiento;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.jvp = jvp;
         this.estado = estado;
     }
-
-    
     
     @Override
     public void insertar() {
         String sql = "INSERT INTO MEDICO VALUES("
-                + "'" + especialidad.getId_Especialidad() + "',"
-                + "'" + establecimiento.getId_Establecimiento() + "',"
+                + "'" + Id_Especialidad + "',"
+                + "'" + Id_Establecimiento + "',"
                 + "'" + nombres + "',"
                 + "'" + apellidos + "',"
                 + "'" + jvp + "',"
@@ -84,22 +82,14 @@ public class Medico implements CatalogosInterface<Medico> {
     @Override
     public void modificar() {
         String consultaSQL = "UPDATE MEDICO SET "
-                + "ID_ESPECIALIDAD='" + 1 + "', "
-                + "ID_ESTABLECIMIENTO='" + 1 + "', "
+                + "ID_ESPECIALIDAD='" + Id_Especialidad + "', "
+                + "ID_ESTABLECIMIENTO='" + Id_Establecimiento + "', "
                 + "NOMBRES='" + nombres + "', "
                 + "APELLIDOS='" + apellidos + "', "
                 + "JVP=" + jvp + ", "
                 + "ESTADO='" + estado + "'"
                 + "WHERE ID_MEDICO=" + Id_Medico;
         DataBaseHelper.modificarRegistro(consultaSQL);
-    }
-
-    @Override
-    public Medico buscarPorClave(String clave) {
-        String consultaSQL = "SELECT * FROM MEDICO WHERE ID_MEDICO = '" + Id_Medico + "'";
-        DataBaseHelper db = new DataBaseHelper();
-        Medico medico = (Medico) db.seleccionarRegistros(consultaSQL, Medico.class).get(0);
-        return medico;
     }
 
     @Override
@@ -116,20 +106,20 @@ public class Medico implements CatalogosInterface<Medico> {
         this.Id_Medico = Id_Medico;
     }
 
-    public Especialidad getEspecialidad() {
-        return especialidad;
+    public Integer getId_Especialidad() {
+        return Id_Especialidad;
     }
 
-    public void setEspecialidad(Especialidad especialidad) {
-        this.especialidad = especialidad;
+    public void setId_Especialidad(Integer Id_Especialidad) {
+        this.Id_Especialidad = Id_Especialidad;
     }
 
-    public Establecimiento getEstablecimiento() {
-        return establecimiento;
+    public Integer getId_Establecimiento() {
+        return Id_Establecimiento;
     }
 
-    public void setEstablecimiento(Establecimiento establecimiento) {
-        this.establecimiento = establecimiento;
+    public void setId_Establecimiento(Integer Id_Establecimiento) {
+        this.Id_Establecimiento = Id_Establecimiento;
     }
 
     public String getNombres() {
