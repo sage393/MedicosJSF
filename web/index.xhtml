@@ -27,11 +27,11 @@
                     </p:column>
 
                     <p:column headerText="Especialidad">
-                        <h:outputText value="#{medico.especialidad.nombre}" />
+                        <h:outputText value="#{medicoControl.nombreEspecialidad(medico.id_Especialidad)}" />
                     </p:column>
 
                     <p:column headerText="Establecimiento">
-                        <h:outputText value="#{medico.establecimiento.nombre}" />
+                        <h:outputText value="#{medicoControl.nombreEstablecimiento(medico.id_Establecimiento)}" />
                     </p:column>
 
                     <p:column headerText="JVP">
