@@ -35,7 +35,7 @@ public class MedicoControl implements Serializable {
     }
     
     public String nombreEspecialidad(Integer i) {
-        Especialidad especialidad = Especialidad.buscarNombrePorClave(i);
+        Especialidad especialidad = Especialidad.buscarPorClave(i);
         return especialidad.getNombre();
     }
     
